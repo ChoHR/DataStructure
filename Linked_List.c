@@ -125,14 +125,19 @@ int FindOrder(Element X, List L){
 		P = P->next;
 		order++;
 	}
-	return order;
+	
+	if(P->value == X)
+		return order;
+	else
+		return 0;
 }
 	
 int main(void){
 	char select;
 	int num;
-	
-	//L의 초기화
+	int c;
+
+	//Initialize the List
 	
 	L=(struct Node*)malloc(sizeof(struct Node));
 	L->data=0;
@@ -140,15 +145,18 @@ int main(void){
 	
 	printf("enter command\ns : search\ni : insert\nd : delete\np : print\nq : exit\n");
 	
-	//s,i,d,p,q 중 선택
+	//select function (s,i,d,p,q)
 	while(1){
 		printf("> ");
 		scanf("%c",&select);
-		rewind(stdin);
+		while((c = getchar())!='\n' && c != EOF)
+			;
 
 		if(select == 's'){
 			printf("enter the item that you want to search\n");
 			scanf("%d",&num);
+			while((c = getchar())!='\n' && c != EOF)
+				;
 			if(FindOrder(num,L) != 0)
 				printf("order of the list having the \"%d\" is \"%d\"\n",num,FindOrder(num,L));
 			else
@@ -157,11 +165,15 @@ int main(void){
 		else if(select == 'i'){
 			printf("enter the item that you want to insert\n");
 			scanf("%d",&num);
+			while((c = getchar())!='\n' && c != EOF)
+				;
 			insertNode(num,L);
 		}
 		else if(select == 'd'){
 			printf("enter the item that you want to delete\n");
 			scanf("%d",&num);
+			while((c = getchar())!='\n' && c != EOF)
+				;
 			deleteNode(num,L);
 		}
 		else if(select == 'p'){
@@ -176,7 +188,7 @@ int main(void){
 			printf("\"%c\" is not right command\n",select);
 			printf("enter command\ns : search\ni : insert\nd : delete\np : print\nq : exit\n");
 		}
-		rewind(stdin);
+
 	}	
 
 	return 0;
