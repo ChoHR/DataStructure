@@ -8,6 +8,7 @@ I make fundamental algorithm and data structure by C language
 * List
 * Queue
 * Stack
+* Hash
 
 school : Hanyang univ
 
